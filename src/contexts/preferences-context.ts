@@ -23,6 +23,8 @@ export type TranslationKey =
   | 'layout.signOut'
   | 'layout.language'
   | 'layout.theme'
+  | 'layout.openMenu'
+  | 'layout.closeMenu'
   | 'layout.themeLight'
   | 'layout.themeDark'
   | 'layout.langEnglish'
