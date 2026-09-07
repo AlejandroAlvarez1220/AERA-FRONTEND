@@ -33,7 +33,7 @@ export function PurchaseForm({ isSaving, onSubmit, materials }: PurchaseFormProp
   }
 
   return (
-    <form className="grid gap-4 md:grid-cols-[1.3fr_0.8fr_0.8fr_auto]" onSubmit={handleSubmit}>
+    <form className="grid gap-4 lg:grid-cols-[1.3fr_0.8fr_0.8fr_auto]" onSubmit={handleSubmit}>
       <div>
         <label className="label" htmlFor="purchase-product">
           {t('purchaseForm.material')}

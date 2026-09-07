@@ -87,7 +87,7 @@ export function MaterialsPage() {
             {
               header: t('materials.actions'),
               render: (material) => (
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     className="btn-secondary px-4 py-2"

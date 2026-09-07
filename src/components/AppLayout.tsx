@@ -125,8 +125,8 @@ export function AppLayout() {
         </button>
       </aside>
 
-      <div className="mx-auto flex min-h-screen max-w-7xl gap-6 p-4 md:p-6">
-        <aside className="panel hidden w-72 flex-col justify-between p-6 lg:flex">
+      <div className="mx-auto flex min-h-screen max-w-7xl gap-6 overflow-hidden p-4 md:p-6">
+        <aside className="panel hidden w-72 shrink-0 flex-col justify-between p-6 lg:flex">
           <div className="space-y-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">
@@ -168,7 +168,7 @@ export function AppLayout() {
           </button>
         </aside>
 
-        <main className="flex-1 space-y-6">
+        <main className="min-w-0 flex-1 space-y-6">
           <div className="panel flex items-center justify-between gap-4 p-4 sm:p-5 lg:hidden">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">

@@ -36,7 +36,7 @@ export function MaterialForm({
   }
 
   return (
-    <form className="grid gap-4 md:grid-cols-[1.4fr_1fr_1fr_auto]" onSubmit={handleSubmit}>
+    <form className="grid gap-4 lg:grid-cols-[1.4fr_1fr_1fr_auto]" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="material-name" className="label">
           {t('materialForm.name')}

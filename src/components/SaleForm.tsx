@@ -68,7 +68,7 @@ export function SaleForm({ errorMessage, isSaving, onSubmit, products }: SaleFor
     <form className="space-y-4" onSubmit={handleSubmit}>
       <div className="space-y-3">
         {items.map((item, index) => (
-          <div key={index} className="grid gap-3 md:grid-cols-[1.4fr_0.8fr_0.8fr_auto]">
+          <div key={index} className="grid gap-3 lg:grid-cols-[1.4fr_0.8fr_0.8fr_auto]">
             <div>
               <label className="label" htmlFor={`sale-product-${index}`}>
                 {t('saleForm.product')}
@@ -137,7 +137,7 @@ export function SaleForm({ errorMessage, isSaving, onSubmit, products }: SaleFor
         ))}
       </div>
 
-      <div className="flex flex-col gap-4 rounded-[28px] bg-slate-50 p-4 dark:bg-slate-900 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 rounded-[28px] bg-slate-50 p-4 dark:bg-slate-900 lg:flex-row lg:items-center lg:justify-between">
         <button
           type="button"
           className="btn-secondary"

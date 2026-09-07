@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Card } from '../components/Card'
+import { HistoryFilterToolbar } from '../components/HistoryFilterToolbar'
 import { PageHeader } from '../components/PageHeader'
+import { PaginationControls } from '../components/PaginationControls'
 import { PurchaseForm } from '../components/PurchaseForm'
 import { Table } from '../components/Table'
+import { useHistoryFilterPagination } from '../hooks/useHistoryFilterPagination'
 import { usePreferences } from '../hooks/usePreferences'
 import { fetchMaterials } from '../services/materialsService'
 import { createPurchase, fetchPurchases } from '../services/purchasesService'
@@ -54,6 +57,38 @@ export function PurchasesPage() {
     }
   }
 
+  const {
+    filterMode,
+    setFilterMode,
+    selectedYear,
+    setSelectedYear,
+    selectedMonth,
+    setSelectedMonth,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    pageSize,
+    setPageSize,
+    currentPage,
+    totalPages,
+    totalRecords,
+    startIndex,
+    endIndex,
+    hasActiveFilters,
+    resetFilters,
+    availableYears,
+    paginatedData,
+    nextPage,
+    prevPage,
+    canNextPage,
+    canPrevPage,
+  } = useHistoryFilterPagination({
+    data: purchases,
+    getDate: (purchase) => purchase.created_at,
+    initialPageSize: 10,
+  })
+
   return (
     <div className="space-y-6">
       <PageHeader title={t('purchases.title')} description={t('purchases.description')} />
@@ -63,9 +98,27 @@ export function PurchasesPage() {
       </Card>
 
       <Card title={t('purchases.history')} description={t('purchases.historyDescription')}>
+        <HistoryFilterToolbar
+          filterMode={filterMode}
+          onFilterModeChange={setFilterMode}
+          selectedYear={selectedYear}
+          onYearChange={setSelectedYear}
+          selectedMonth={selectedMonth}
+          onMonthChange={setSelectedMonth}
+          startDate={startDate}
+          onStartDateChange={setStartDate}
+          endDate={endDate}
+          onEndDateChange={setEndDate}
+          availableYears={availableYears}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
+          hasActiveFilters={hasActiveFilters}
+          onResetFilters={resetFilters}
+        />
+
         <Table
-          data={purchases}
-          emptyState={t('purchases.empty')}
+          data={paginatedData}
+          emptyState={hasActiveFilters ? t('filters.noResults') : t('purchases.empty')}
           columns={[
             {
               header: t('purchases.date'),
@@ -92,6 +145,18 @@ export function PurchasesPage() {
               render: (purchase) => formatCurrency(purchase.cost * purchase.quantity, locale),
             },
           ]}
+        />
+
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalRecords={totalRecords}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          onPrevPage={prevPage}
+          onNextPage={nextPage}
+          canPrevPage={canPrevPage}
+          canNextPage={canNextPage}
         />
       </Card>
     </div>

@@ -9,7 +9,7 @@
   }
 
   html {
-    @apply bg-[#f4f4f4] text-slate-900 antialiased transition-colors duration-200 dark:bg-[#0b1020] dark:text-slate-100;
+    @apply overflow-x-hidden bg-[#f4f4f4] text-slate-900 antialiased transition-colors duration-200 dark:bg-[#0b1020] dark:text-slate-100;
   }
 
   body {

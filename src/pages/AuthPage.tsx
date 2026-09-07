@@ -44,7 +44,7 @@ export function AuthPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
               AERA
             </p>
-            <h1 className="text-5xl font-semibold tracking-tight">
+            <h1 className="text-4xl font-semibold tracking-tight xl:text-5xl">
               {t('auth.heroTitle')}
             </h1>
             <p className="text-base text-slate-300">

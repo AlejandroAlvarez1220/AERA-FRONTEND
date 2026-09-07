@@ -13,7 +13,7 @@ export function PageHeader({ description, title }: PageHeaderProps) {
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">
         {t('pageHeader.eyebrow')}
       </p>
-      <h1 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">{title}</h1>
+      <h1 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl dark:text-white">{title}</h1>
       <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-400">{description}</p>
     </header>
   )

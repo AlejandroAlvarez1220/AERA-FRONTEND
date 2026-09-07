@@ -60,7 +60,7 @@ export function DashboardPage() {
     <div className="space-y-6">
       <PageHeader title={t('dashboard.title')} description={t('dashboard.description')} />
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         <KpiCard label={t('dashboard.totalSales')} value={formatCurrency(metrics.totalSales, locale)} />
         <KpiCard label={t('dashboard.grossProfit')} value={formatCurrency(metrics.grossProfit, locale)} />
         <KpiCard label={t('dashboard.materialsValue')} value={formatCurrency(metrics.materialsValue, locale)} />

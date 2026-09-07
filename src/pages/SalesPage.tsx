@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Card } from '../components/Card'
+import { HistoryFilterToolbar } from '../components/HistoryFilterToolbar'
 import { PageHeader } from '../components/PageHeader'
+import { PaginationControls } from '../components/PaginationControls'
 import { SaleForm } from '../components/SaleForm'
 import { Table } from '../components/Table'
+import { useHistoryFilterPagination } from '../hooks/useHistoryFilterPagination'
 import { usePreferences } from '../hooks/usePreferences'
 import { fetchProducts } from '../services/productsService'
 import { createSale, fetchSales } from '../services/salesService'
@@ -52,6 +55,38 @@ export function SalesPage() {
     }
   }
 
+  const {
+    filterMode,
+    setFilterMode,
+    selectedYear,
+    setSelectedYear,
+    selectedMonth,
+    setSelectedMonth,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    pageSize,
+    setPageSize,
+    currentPage,
+    totalPages,
+    totalRecords,
+    startIndex,
+    endIndex,
+    hasActiveFilters,
+    resetFilters,
+    availableYears,
+    paginatedData,
+    nextPage,
+    prevPage,
+    canNextPage,
+    canPrevPage,
+  } = useHistoryFilterPagination({
+    data: sales,
+    getDate: (sale) => sale.created_at,
+    initialPageSize: 10,
+  })
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -72,9 +107,27 @@ export function SalesPage() {
       </Card>
 
       <Card title={t('sales.history')} description={t('sales.historyDescription')}>
+        <HistoryFilterToolbar
+          filterMode={filterMode}
+          onFilterModeChange={setFilterMode}
+          selectedYear={selectedYear}
+          onYearChange={setSelectedYear}
+          selectedMonth={selectedMonth}
+          onMonthChange={setSelectedMonth}
+          startDate={startDate}
+          onStartDateChange={setStartDate}
+          endDate={endDate}
+          onEndDateChange={setEndDate}
+          availableYears={availableYears}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
+          hasActiveFilters={hasActiveFilters}
+          onResetFilters={resetFilters}
+        />
+
         <Table
-          data={sales}
-          emptyState={t('sales.empty')}
+          data={paginatedData}
+          emptyState={hasActiveFilters ? t('filters.noResults') : t('sales.empty')}
           columns={[
             {
               header: t('sales.date'),
@@ -104,6 +157,18 @@ export function SalesPage() {
               ),
             },
           ]}
+        />
+
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalRecords={totalRecords}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          onPrevPage={prevPage}
+          onNextPage={nextPage}
+          canPrevPage={canPrevPage}
+          canNextPage={canNextPage}
         />
       </Card>
     </div>
