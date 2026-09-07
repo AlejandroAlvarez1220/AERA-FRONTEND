@@ -181,6 +181,7 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     'inventory.materialCount': 'Materials',
     'inventory.producibleUnits': 'Producible units',
     'inventory.bottleneck': 'Bottleneck material',
+    'inventory.value': 'Inventory value',
     'revenue.empty': 'Revenue will appear here as soon as you log sales.',
     'filters.filterBy': 'Filter by',
     'filters.all': 'All records',
